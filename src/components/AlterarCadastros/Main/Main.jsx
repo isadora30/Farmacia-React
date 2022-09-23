@@ -8,28 +8,32 @@ import {
 } from "../../DataInput/DataInput";
 import "./MainStyle.css";
 
-const MainNovoCadastro = () => {
+const MainAlterarCadastro = () => {
   const API = new API_Fetch();
   const [route, setRoute] = useState("");
   const [data_input, setData_input] = useState();
+  const [id, setId] = useState("");
   const [data, setData] = useState({});
   const childToParent = (childData) => {
     setData(childData);
   };
+
+  useEffect(() => console.log(id), [id]);
   useEffect(() => console.log(data), [data]);
+
   useEffect(() => {
     switch (route) {
       case "Clientes":
-        API.postNovoCliente(data);
+        API.putCliente(data, id);
         break;
       case "Funcionários":
-        API.postNovoFuncionario(data);
+        API.putFuncionario(data, id);
         break;
       case "Vendas":
-        API.postNovaVenda(data);
+        API.putVenda(data, id);
         break;
       case "Remédios":
-        API.postNovoRemedio(data);
+        API.putRemedio(data, id);
         break;
       default:
     }
@@ -38,16 +42,24 @@ const MainNovoCadastro = () => {
   useEffect(() => {
     switch (route) {
       case "Clientes":
-        setData_input(<ClientesDataInput childToParent={childToParent} />);
+        setData_input(
+          <ClientesDataInput id={id} childToParent={childToParent} />
+        );
         break;
       case "Funcionários":
-        setData_input(<FuncionariosDataInput childToParent={childToParent} />);
+        setData_input(
+          <FuncionariosDataInput id={id} childToParent={childToParent} />
+        );
         break;
       case "Vendas":
-        setData_input(<VendasDataInput childToParent={childToParent} />);
+        setData_input(
+          <VendasDataInput id={id} childToParent={childToParent} />
+        );
         break;
       case "Remédios":
-        setData_input(<RemediosDataInput childToParent={childToParent} />);
+        setData_input(
+          <RemediosDataInput id={id} childToParent={childToParent} />
+        );
         break;
       default:
         setData_input(<h1>Selecione uma rota</h1>);
@@ -56,6 +68,15 @@ const MainNovoCadastro = () => {
   return (
     <div className="main_cadastro">
       <div className="cadastro_div">
+        <div className="input_id_div">
+          <label>ID:</label>
+          <input
+            type="text"
+            onChange={(event) => {
+              setId(event.target.value);
+            }}
+          />
+        </div>
         <div className="select_route_div">
           <p>Rota:</p>
           <select
@@ -78,4 +99,4 @@ const MainNovoCadastro = () => {
   );
 };
 
-export default MainNovoCadastro;
+export default MainAlterarCadastro;

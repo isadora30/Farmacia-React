@@ -7,13 +7,13 @@ const SecondHeader = () => {
             <div className='divOne'>
                 <h2 className='h2'>API para otimização do trabalho de Farmácias</h2>
                 <p className='p'>Cadastre, visualize, modifique e delete usuários, vendas, remédios e funcionários</p>
-                <div>
+                <div className='divTwo'>
                 <button className='secondheaderbutton'>COMEÇAR A USAR A API</button>
                 <span className='secondheaderspan'>─ é gratuito</span>
                 </div>
             </div>
             <div className='blank'>
-                
+                <img src="src/assets/rest.png" alt="" />
             </div>
         </section>
     )
